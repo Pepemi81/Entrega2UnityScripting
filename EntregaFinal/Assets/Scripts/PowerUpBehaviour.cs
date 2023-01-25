@@ -7,6 +7,8 @@ public class PowerUpBehaviour : MonoBehaviour
     private int powerindex = 0;
     private new Renderer renderer;
 
+    public AudioSource pickupfx;
+
     void Start()
     {
         
@@ -14,7 +16,7 @@ public class PowerUpBehaviour : MonoBehaviour
 
     private void Awake() // Se genera un número aleatorio y se aplica el color
     {
-        powerindex = Random.Range(0, 4);
+        powerindex = Random.Range(0, 2);
         renderer = GetComponent<Renderer>();
         setColor();
     }
@@ -35,29 +37,19 @@ public class PowerUpBehaviour : MonoBehaviour
             switch (powerindex)
             {
                 case 0:
-                    renderer.material.color = Color.red;
-                    player.useMedKit();
+
+                    player.useMedkit();
+
 
                     break;
 
                 case 1:
-                    renderer.material.color = Color.green;
-                    player.activateDoubleShot();
 
-                    break;
-
-                case 2:
-                    renderer.material.color = Color.blue;
-                    player.activateDrone();
-
-                    break;
-
-                case 3:
-                    renderer.material.color = Color.yellow;
-                    player.activateLaser();
+                    player.setUltraRof();
 
                     break;
             }
+            pickupfx.Play();
 
             Object.Destroy(gameObject);
         }
@@ -78,15 +70,6 @@ public class PowerUpBehaviour : MonoBehaviour
 
                 break;
 
-            case 2:
-                renderer.material.color = Color.blue;
-
-                break;
-
-            case 3:
-                renderer.material.color = Color.yellow;
-
-                break;
         }
     }
 }

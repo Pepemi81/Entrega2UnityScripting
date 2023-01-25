@@ -8,7 +8,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject  silly;
     public bool        isInfinite;
     public float       spawnRate;
-    private float      enemyType;
+    public float       offsetX;
+    public float       offsetZ;
+
 
     void Start()
     {
@@ -24,7 +26,9 @@ public class EnemySpawner : MonoBehaviour
 
             if(spawnRate <= 0 )
             {
-                Instantiate(silly, transform.position, transform.rotation);
+                offsetX = Random.Range(-10, 11);
+                offsetZ = Random.Range(-10, 11);
+                Instantiate(silly, new Vector3(offsetX, 0.6f, offsetZ), transform.rotation);
                 spawnRate = Random.Range(5, 8);
             }
         }
@@ -39,7 +43,9 @@ public class EnemySpawner : MonoBehaviour
 
             if (spawnRate <= 0)
             {
-                Instantiate(silly, transform.position, transform.rotation);
+                offsetX = Random.Range(-10, 11);
+                offsetZ = Random.Range(-10, 11);
+                Instantiate(silly, new Vector3(offsetX, 0.6f, offsetZ), transform.rotation);
                 spawnRate = Random.Range(5, 8);
             }
         }

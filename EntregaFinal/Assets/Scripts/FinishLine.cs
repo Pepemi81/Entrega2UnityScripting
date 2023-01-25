@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
-    public Collider    player;
     public GameManager manager;
 
     void Start()
@@ -20,8 +19,10 @@ public class FinishLine : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        
         if (other.tag == "Player")
         {
+            Debug.Log("win");
             manager.youWin();
         }
     }

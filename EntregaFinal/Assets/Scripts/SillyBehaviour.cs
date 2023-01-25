@@ -5,11 +5,14 @@ using UnityEngine;
 public class SillyBehaviour : MonoBehaviour
 {
     Rigidbody body;
+    public GameObject powerUp;
 
-    public float      speed     = 200;
-    public float      hp        = 5;
-    public float      movetimer = 5;
+    public float      speed      = 200;
+    public float      hp         = 5;
+    public float      movetimer  = 5;
+    private float     dropChance = 3;
     private Vector3   direction;
+    
     
    
     
@@ -40,15 +43,14 @@ public class SillyBehaviour : MonoBehaviour
             direction.y = 0;
 
             movetimer = Random.Range(3, 6);
-            Debug.Log(direction);
         }
         
     }
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            PlayerController player = other.gameObject.GetComponent<PlayerController>();
             player.takeDamage();
             Destroy(gameObject);
         }
@@ -60,6 +62,13 @@ public class SillyBehaviour : MonoBehaviour
 
         if(hp <= 0)
         {
+            dropChance = Random.Range(1, 4);
+
+            if(dropChance == 1)
+            {
+                Instantiate(powerUp, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
     }

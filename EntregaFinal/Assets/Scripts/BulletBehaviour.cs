@@ -40,17 +40,10 @@ public class BulletBehaviour : MonoBehaviour
             Object.Destroy(gameObject);
         }
 
-        /*if (other.tag == "ChaserEnemy")
+        if (other.tag == "Surface")
         {
-            ChaserEnemyBehaviour chaserenemy = other.GetComponent<ChaserEnemyBehaviour>();
-
-            if (chaserenemy != null)
-            {
-                chaserenemy.takeDamage();
-            }
-
             Object.Destroy(gameObject);
         }
-        */
+        
     }
 }
